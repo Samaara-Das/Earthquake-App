@@ -18,7 +18,9 @@ dependencies:
   geolocator:
   geocoding:
   flutter_easyloading:
-  url_launcher: ^6.1.10
+  dio: ^4.0.0
+  flutter_polyline_points: ^2.1.0
+  google_maps_flutter: ^2.0.2
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io' show Platform;
 import 'package:earthquake_app/utils/helper_functions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:earthquake_app/models/earthquake_model.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart' as gc;
-import 'package:url_launcher/url_launcher.dart';
+
 
 class AppDataProvider extends ChangeNotifier {
   final baseUrl = Uri.parse('https://earthquake.usgs.gov/fdsnws/event/1/query');
@@ -133,10 +132,6 @@ class AppDataProvider extends ChangeNotifier {
     } catch(error) {
       print(error);
     }
-  }
-
-  Future<void> openMap(double latitude, double longitude) async {
-
   }
 
   /// Determine the current position of the device.

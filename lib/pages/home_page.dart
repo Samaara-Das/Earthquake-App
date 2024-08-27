@@ -1,3 +1,4 @@
+import 'package:earthquake_app/pages/map_page.dart';
 import 'package:earthquake_app/providers/app_data_provider.dart';
 import 'package:earthquake_app/settings_page.dart';
 import 'package:earthquake_app/utils/helper_functions.dart';
@@ -43,21 +44,19 @@ class _HomePageState extends State<HomePage> {
             itemBuilder: (context, index) {
               final data = provider.earthquakeModel!.features![index].properties;
               final geometry = provider.earthquakeModel!.features![index].geometry;
+              final title = data!.place ?? data.title ?? 'Unknown';
+              double longitude = geometry!.coordinates![0].toDouble();
+              double latitude = geometry.coordinates![1].toDouble();
+
               return ListTile(
-                title: Text(data!.place ?? data.title ?? 'Unknown'),
+                title: Text(title),
                 subtitle: Text(getFormattedDateTime(data.time!, 'EEE MMM dd yyyy hh:mm a')),
                 trailing: Chip(
                   avatar: data.alert == null ? null : CircleAvatar(backgroundColor: provider.getAlertColor(data.alert!)),
                   label: Text('${data.mag}')
                 ),
-                onTap: () async {
-                  try {
-                    double longitude = geometry!.coordinates![0].toDouble();
-                    double latitude = geometry.coordinates![1].toDouble();
-                    await provider.openMap(latitude, longitude);
-                  } catch (e) {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error opening map: $e')));
-                  }
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage(latitude: latitude, longitude: longitude, title: title)));
                 }
               );
             }
