@@ -39,27 +39,32 @@ class _HomePageState extends State<HomePage> {
         builder: (context, provider, child) => provider.hasDataLoaded ?
           provider.earthquakeModel!.features!.isEmpty ?
           const Center(child: Text('No records found')) :
-          ListView.builder(
-            itemCount: provider.earthquakeModel!.features!.length,
-            itemBuilder: (context, index) {
-              final data = provider.earthquakeModel!.features![index].properties;
-              final geometry = provider.earthquakeModel!.features![index].geometry;
-              final title = data!.place ?? data.title ?? 'Unknown';
-              double longitude = geometry!.coordinates![0].toDouble();
-              double latitude = geometry.coordinates![1].toDouble();
+          Padding(
+            padding: const EdgeInsets.all(14),
+            child: ListView.separated(
+              separatorBuilder: (context, index) => const Divider(height: 1),
+              itemCount: provider.earthquakeModel!.features!.length,
+              itemBuilder: (context, index) {
+                final data = provider.earthquakeModel!.features![index].properties;
+                final geometry = provider.earthquakeModel!.features![index].geometry;
+                final title = data!.place ?? data.title ?? 'Unknown';
+                double longitude = geometry!.coordinates![0].toDouble();
+                double latitude = geometry.coordinates![1].toDouble();
 
-              return ListTile(
-                title: Text(title),
-                subtitle: Text(getFormattedDateTime(data.time!, 'EEE MMM dd yyyy hh:mm a')),
-                trailing: Chip(
-                  avatar: data.alert == null ? null : CircleAvatar(backgroundColor: provider.getAlertColor(data.alert!)),
-                  label: Text('${data.mag}')
-                ),
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage(latitude: latitude, longitude: longitude, title: title)));
-                }
-              );
-            }
+                return ListTile(
+                  title: Text(title),
+                  subtitle: Text(getFormattedDateTime(data.time!, 'EEE MMM dd yyyy hh:mm a')),
+                  contentPadding: EdgeInsets.zero,
+                  trailing: Chip(
+                    avatar: data.alert == null ? null : CircleAvatar(backgroundColor: provider.getAlertColor(data.alert!)),
+                    label: Text('${data.mag}')
+                  ),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage(latitude: latitude, longitude: longitude, title: title)));
+                  }
+                );
+              }
+            ),
           )
           : const Center(child: Text('Please wait...'))
       )
