@@ -18,6 +18,7 @@ dependencies:
   geolocator:
   geocoding:
   flutter_easyloading:
+  url_launcher: ^6.1.10
 
 dev_dependencies:
   flutter_test:
