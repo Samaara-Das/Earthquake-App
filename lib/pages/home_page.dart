@@ -1,6 +1,6 @@
 import 'package:earthquake_app/pages/map_page.dart';
 import 'package:earthquake_app/providers/app_data_provider.dart';
-import 'package:earthquake_app/settings_page.dart';
+import 'package:earthquake_app/pages/settings_page.dart';
 import 'package:earthquake_app/utils/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

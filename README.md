@@ -1,16 +1,7 @@
-# earthquake_app
+# Earthquake App
+This Flutter app displays all the earthquakes that happened globally within a certain date range. Users can sort the earthquakes based on their magnitude or date.
+The user can also see where an earthquake happened on a map.
 
-A new Flutter project.
+To view a demo of the app, click on the image below:
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[![Earthquake App](https://img.youtube.com/vi/QuVhNtMvU8w/0.jpg)](https://youtu.be/QuVhNtMvU8w)
